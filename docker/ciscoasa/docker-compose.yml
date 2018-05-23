@@ -9,12 +9,10 @@ services:
     restart: always
     stop_signal: SIGINT
     tmpfs:
-     - /tmp/ciscoasa:uid=2000,gid=2000
+     - /tmp/sensor:uid=65534,gid=65534
     network_mode: "host"
     ports:
      - "5000:5000/udp"
      - "8443:8443"
-    image: "dtagdevsec/ciscoasa:1804"
+    image: "sissden/ciscoasa:latest"
     read_only: true
-    volumes:
-     - /data/ciscoasa/log:/var/log/ciscoasa
