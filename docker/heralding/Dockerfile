@@ -26,12 +26,9 @@ RUN apk -U --no-cache add \
     pip3 install --no-cache-dir heralding && \
 
 # Setup user, groups and configs
-    addgroup -g 2000 heralding && \
-    adduser -S -H -s /bin/ash -u 2000 -D -g 2000 heralding && \
-    mkdir -p /var/log/heralding/ /etc/heralding && \
+    mkdir -p /etc/heralding && \
     mv /root/dist/heralding.yml /etc/heralding/ && \
     setcap cap_net_bind_service=+ep /usr/bin/python3.6 && \
-    chown -R heralding:heralding /var/log/heralding && \
 
 # Clean up
     apk del --purge \
@@ -48,6 +45,7 @@ RUN apk -U --no-cache add \
            /opt/heralding
 
 # Start elasticpot
-WORKDIR /tmp/heralding/
-USER heralding:heralding
-CMD exec heralding -c /etc/heralding/heralding.yml -l /var/log/heralding/heralding.log
+WORKDIR /tmp/sensor/
+EXPOSE 21 22 23 25 80 110 143 443 993 995 5432 5900
+USER nobody:nobody
+CMD exec heralding -c /etc/heralding/heralding.yml -l /tmp/sensor/heralding.log

@@ -8,20 +8,20 @@ bind_host: 0.0.0.0
 activity_logging:
   file:
     enabled: true
-    session_log_file: "/var/log/heralding/session.csv"
-    authentication_log_file: "/var/log/heralding/auth.csv"
+    session_log_file: "/tmp/sensor/session.csv"
+    authentication_log_file: "/tmp/sensor/auth.csv"
 
   syslog:
     enabled: false
 
   hpfeeds:
-    enabled: false
-    session_channel: "heralding.session"
+    enabled: true
+    session_channel: "heralding.channel"
     auth_channel: "heralding.auth"
-    host: 
-    port: 20000
-    ident:
-    secret:
+    host: "hpfeeds.eval.sissden.eu"
+    port: 80
+    ident: "user"
+    secret: "pass"
 
   curiosum:
     enabled: false
