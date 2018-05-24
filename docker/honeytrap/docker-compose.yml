@@ -1,8 +1,5 @@
 version: '2.3'
 
-networks:
-  honeytrap_local:
-
 services:
 
 # Honeytrap service
@@ -11,13 +8,12 @@ services:
     container_name: honeytrap
     restart: always
     tmpfs:
-     - /tmp/honeytrap:uid=2000,gid=2000
+     - /tmp/sensor:uid=65534,gid=65534
+     - /opt/honeytrap/var/attacks:uid=65534,gid=65534
+     - /opt/honeytrap/var/downloads:uid=65534,gid=65534
+     - /opt/honeytrap/var/log:uid=65534,gid=65534
     network_mode: "host"
     cap_add:
      - NET_ADMIN
-    image: "dtagdevsec/honeytrap:1804"
+    image: "sissden/honeytrap:latest"
     read_only: true
-    volumes:
-     - /data/honeytrap/attacks:/opt/honeytrap/var/attacks
-     - /data/honeytrap/downloads:/opt/honeytrap/var/downloads
-     - /data/honeytrap/log:/opt/honeytrap/var/log
