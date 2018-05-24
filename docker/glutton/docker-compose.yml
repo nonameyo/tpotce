@@ -8,12 +8,10 @@ services:
     container_name: glutton
     restart: always
     tmpfs:
-     - /var/lib/glutton:uid=2000,gid=2000
+     - /tmp/sensor
+     - /var/lib/glutton:uid=65534,gid=65534
     network_mode: "host"
     cap_add:
      - NET_ADMIN
-    image: "dtagdevsec/glutton:1804"
+    image: "sissden/glutton:latest"
     read_only: true
-    volumes:
-     - /data/glutton/log:/var/log/glutton
-     - /root/tpotce/docker/glutton/dist/rules.yaml:/opt/glutton/rules/rules.yaml

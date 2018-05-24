@@ -32,8 +32,6 @@ RUN apk -U --no-cache add \
     setcap cap_net_admin,cap_net_raw=+ep /sbin/xtables-multi && \
 
 # Setup user, groups and configs
-    addgroup -g 2000 glutton && \
-    adduser -S -s /bin/ash -u 2000 -D -g 2000 glutton && \
     mkdir -p /var/log/glutton && \
     mv /root/dist/rules.yaml /opt/glutton/rules/ && \
 
@@ -48,5 +46,5 @@ RUN apk -U --no-cache add \
 
 # Start glutton 
 WORKDIR /opt/glutton
-USER glutton:glutton
-CMD exec bin/server -i $(/sbin/ip address | grep '^2: ' | awk '{ print $2 }' | tr -d [:punct:]) -l /var/log/glutton/glutton.log
+USER nobody:nobody
+CMD exec bin/server -i $(/sbin/ip address | grep '^2: ' | awk '{ print $2 }' | tr -d [:punct:]) -l /tmp/sensor/glutton.log
