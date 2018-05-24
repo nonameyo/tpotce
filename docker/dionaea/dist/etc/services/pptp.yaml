@@ -1,19 +1,19 @@
 - name: pptp
   config:
 # Cisco PIX
-#    firmware_revision: 4608
-#    hostname:
-#    vendor_name: Cisco Systems
+    firmware_revision: 4608
+    hostname:
+    vendor_name: Cisco Systems
 
 # DrayTek
-#    firmware: 1
+#    firmware_revision: 1
 #    hostname: Vigor
 #    vendor_name: DrayTek
 
 # Linux
-    firmware: 1
-    hostname: local
-    vendor_name: linux
+#    firmware_revision: 1
+#    hostname: local
+#    vendor_name: linux
 
 # Windows
 #    firmware_revision: 0

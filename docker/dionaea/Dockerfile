@@ -52,13 +52,9 @@ RUN apt-get update -y && \
     make && \
     make install && \
 
-# Setup user and groups
-    addgroup --gid 2000 dionaea && \
-    adduser --system --no-create-home --shell /bin/bash --uid 2000 --disabled-password --disabled-login --gid 2000 dionaea && \
-    setcap cap_net_bind_service=+ep /opt/dionaea/bin/dionaea && \
-
 # Supply configs and set permissions
-    chown -R dionaea:dionaea /opt/dionaea/var && \
+    setcap cap_net_bind_service=+ep /opt/dionaea/bin/dionaea && \
+    chown -R nobody:nogroup /opt/dionaea/var && \
     rm -rf /opt/dionaea/etc/dionaea/* && \
     mv /root/dist/etc/* /opt/dionaea/etc/dionaea/ && \
 
@@ -107,5 +103,6 @@ RUN apt-get update -y && \
     rm -rf /root/* /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Start dionaea
-USER dionaea:dionaea
-CMD ["/opt/dionaea/bin/dionaea", "-u", "dionaea", "-g", "dionaea", "-c", "/opt/dionaea/etc/dionaea/dionaea.cfg"]
+EXPOSE 20 21 42 69/udp 80 135 443 445 1433 1723 1883 3306 5060 5060/udp 5061 27017
+USER nobody:nogroup
+CMD ["/opt/dionaea/bin/dionaea", "-u", "nobody", "-g", "nogroup", "-c", "/opt/dionaea/etc/dionaea/dionaea.cfg"]

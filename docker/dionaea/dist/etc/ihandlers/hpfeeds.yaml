@@ -1,0 +1,8 @@
+- name: hpfeeds
+  config:
+    server: "hpfeeds.eval.sissden.eu"
+    port: 80
+    ident: "user"
+    secret: "pass"
+    # dynip_resolve: enable to lookup the sensor ip through a webservice
+    dynip_resolve: "http://whatismyip.akamai.com/"

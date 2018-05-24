@@ -6,34 +6,20 @@ services:
   dionaea:
     build: .
     container_name: dionaea
+    extra_hosts:
+      - hpfeeds.eval.sissden.eu:213.189.32.146
     stdin_open: true
     restart: always
+    tmpfs:
+     - /opt/dionaea/var/dionaea/roots/ftp:uid=65534,gid=65534
+     - /opt/dionaea/var/dionaea/roots/tftp:uid=65534,gid=65534
+     - /opt/dionaea/var/dionaea/roots/www:uid=65534,gid=65534
+     - /opt/dionaea/var/dionaea/roots/upnp:uid=65534,gid=65534
+     - /opt/dionaea/var/dionaea/binaries:uid=65534,gid=65534
+     - /opt/dionaea/var/dionaea/bistreams:uid=65534,gid=65534
+     - /opt/dionaea/var/dionaea:uid=65534,gid=65534
+     - /opt/dionaea/var/log:uid=65534,gid=65534
+     - /opt/dionaea/var/dionaea/rtp:uid=65534,gid=65534
     network_mode: "host"
-    ports:
-     - "20:20"
-     - "21:21"
-     - "42:42"
-     - "69:69/udp"
-     - "8081:8081"
-     - "135:135"
-     - "443:443"
-     - "445:445"
-     - "1433:1433"
-     - "1723:1723"
-     - "1883:1883"
-     - "3306:3306"
-     - "5060:5060"
-     - "5060:5060/udp"
-     - "5061:5061"
-     - "27017:27017"
-    image: "dtagdevsec/dionaea:1804"
+    image: "sissden/dionaea:latest"
     read_only: true
-    volumes:
-     - /data/dionaea/roots/ftp:/opt/dionaea/var/dionaea/roots/ftp
-     - /data/dionaea/roots/tftp:/opt/dionaea/var/dionaea/roots/tftp
-     - /data/dionaea/roots/www:/opt/dionaea/var/dionaea/roots/www
-     - /data/dionaea/roots/upnp:/opt/dionaea/var/dionaea/roots/upnp
-     - /data/dionaea:/opt/dionaea/var/dionaea
-     - /data/dionaea/binaries:/opt/dionaea/var/dionaea/binaries
-     - /data/dionaea/log:/opt/dionaea/var/log
-     - /data/dionaea/rtp:/opt/dionaea/var/dionaea/rtp
