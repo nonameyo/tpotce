@@ -18,11 +18,11 @@ config_template = {'DATA': {'db_config': '/opt/tanner/db/db_config.json', 'dorks
                    'SQLI': {'type': 'SQLITE', 'db_name': 'tanner_db', 'host': 'localhost', 'user': 'root',
                             'password': 'user_pass'},
                    'DOCKER': {'host_image': 'busybox:latest'},
-                   'LOGGER': {'log_debug': '/tmp/tanner/tanner.log', 'log_err': '/tmp/tanner/tanner.err'},
+                   'LOGGER': {'log_debug': '/tmp/sensor/tanner.log', 'log_err': '/tmp/sensor/tanner.err'},
                    'MONGO': {'enabled': False, 'URI': 'mongodb://localhost'},
-                   'HPFEEDS': {'enabled': False, 'HOST': 'localhost', 'PORT': 10000, 'IDENT': '', 'SECRET': '',
+                   'HPFEEDS': {'enabled': False, 'HOST': 'localhost', 'PORT': 20000, 'IDENT': '', 'SECRET': '',
                                'CHANNEL': 'tanner.events'},
-                   'LOCALLOG': {'enabled': True, 'PATH': '/var/log/tanner/tanner_report.json'},
+                   'LOCALLOG': {'enabled': True, 'PATH': '/tmp/sensor/tanner_report.json'},
                    'CLEANLOG': {'enabled': False}
                    }
 

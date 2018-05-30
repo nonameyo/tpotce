@@ -79,8 +79,6 @@ services:
     tty: true
     networks:
      - tanner_local
-    ports:
-     - "127.0.0.1:8090:8090"
     image: "sissden/tanner:latest"
     command: tanner
     read_only: true
@@ -96,7 +94,10 @@ services:
     restart: always
     stop_signal: SIGKILL
     tty: true
-    network_mode: "host"
+    networks:
+     - tanner_local
+    ports:
+     - "80:80"
     image: "sissden/snare:latest"
     depends_on:
      - tanner

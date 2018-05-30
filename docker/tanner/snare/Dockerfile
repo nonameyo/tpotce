@@ -25,5 +25,6 @@ RUN apk -U --no-cache add \
     rm -rf /var/cache/apk/*
 
 # Start snare
+EXPOSE 80
 WORKDIR /opt/snare
-CMD /usr/bin/python3.6 /opt/snare/snare.py --tanner tanner --debug true --no-dorks --auto-update false --host-ip 0.0.0.0 --port 80 --page-dir example.com
+CMD /usr/bin/python3.6 /opt/snare/snare.py --tanner 127.0.0.1 --debug true --no-dorks --auto-update false --host-ip 0.0.0.0 --port 80 --page-dir example.com

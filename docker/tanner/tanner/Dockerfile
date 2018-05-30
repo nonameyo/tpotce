@@ -24,10 +24,7 @@ RUN apk -U --no-cache add \
     cd / && \
     
 # Setup configs, user, groups
-    addgroup -g 2000 tanner && \
-    adduser -S -s /bin/ash -u 2000 -D -g 2000 tanner && \
-    mkdir /var/log/tanner && \
-    chown -R tanner:tanner /opt/tanner /var/log/tanner && \
+    chown -R nobody:nobody /opt/tanner && \
 
 # Clean up
     apk del --purge \
@@ -39,6 +36,5 @@ RUN apk -U --no-cache add \
     rm -rf /var/cache/apk/*
 
 # Start conpot
-USER tanner:tanner
+USER nobody:nobody
 WORKDIR /opt/tanner
-CMD tanner 
