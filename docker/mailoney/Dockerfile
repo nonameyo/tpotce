@@ -48,4 +48,4 @@ RUN apk -U --no-cache add \
 # Set workdir and start mailoney
 USER mailoney:mailoney
 WORKDIR /opt/mailoney/
-CMD ["/usr/bin/python","mailoney.py","-i","0.0.0.0","-p","25","-s","mailrelay.local","-t","schizo_open_relay"]
+CMD ["/usr/bin/python","mailoney.py","-i","0.0.0.0","-p","25","-s","mailserver","-t","schizo_open_relay"]

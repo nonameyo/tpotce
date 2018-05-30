@@ -16,12 +16,13 @@ services:
      - HPFEEDS_SECRET=pass
      - HPFEEDS_PORT=20000
      - HPFEEDS_CHANNELPREFIX=prefix
+     - LOGPATH=/tmp/sensor
+    tmpfs:
+     - /tmp/sensor:uid=65534,gid=65534
     stop_signal: SIGINT
     networks:
      - mailoney_local
     ports:
      - "25:25"
-    image: "dtagdevsec/mailoney:1804"
+    image: "sissden/mailoney:latest"
     read_only: true
-    volumes:
-     - /data/mailoney/log:/opt/mailoney/logs
