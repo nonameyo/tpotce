@@ -14,8 +14,6 @@ RUN apk -U --no-cache add \
     go install github.com/magisterquis/vnclowpot && \
 
 # Setup user, groups and configs
-    addgroup -g 2000 vnclowpot  && \
-    adduser -S -s /bin/bash -u 2000 -D -g 2000 vnclowpot && \
     mkdir -p /var/log/vnclowpot && \
 
 # Clean up
@@ -25,6 +23,7 @@ RUN apk -U --no-cache add \
     rm -rf /opt/go/src \
            /var/cache/apk/* \
 
-# Run supervisor upon container start
-USER vnclowpot:vnclowpot
-CMD exec /opt/go/bin/vnclowpot -j >> /var/log/vnclowpot/vnclowpot.log
+# Run vnclowpot
+EXPOSE 5900
+USER nobody:nobody
+CMD exec /opt/go/bin/vnclowpot -j >> /tmp/sensor/vnclowpot.log
